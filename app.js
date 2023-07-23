@@ -14,6 +14,7 @@ const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'),
 morgan.token('body', (req, res) => JSON.stringify(req.body));
 
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use(morgan(':method :url :status :response-time ms - :res[content-length] :body - :req[content-length]', { stream: accessLogStream }));
 // app.use(morgan('combined', { stream: accessLogStream }))
@@ -23,6 +24,10 @@ app.get('/', function (req, res) {
 });
 
 app.post('/', function (req, res) {
+    const data = req.body;
+
+    console.log('POST DATA:', JSON.stringify(data, null, 2));
+
     res.send('OK');
 });
 
