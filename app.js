@@ -27,6 +27,7 @@ app.post('/', function (req, res) {
     const data = req.body;
 
     console.log('POST DATA:', JSON.stringify(data, null, 2));
+    console.log(JSON.stringify(req.headers));
 
     res.send('OK');
 });
