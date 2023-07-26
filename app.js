@@ -13,6 +13,8 @@ const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'),
 
 morgan.token('body', (req, res) => JSON.stringify(req.body));
 
+app.use(express.static('public'))
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }))
 
